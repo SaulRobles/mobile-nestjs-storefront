@@ -1,4 +1,4 @@
-import { Module, Global, Inject } from '@nestjs/common';
+import { Module, Global } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 const Shopify = require('shopify-api-node');
 

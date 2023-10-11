@@ -2,11 +2,26 @@ import { Collections } from './interfaces';
 
 const collections: Collections = {};
 
-collections.getAll = (first = 10) => {
+collections.getCollections = (first = 10) => {
   const query = `{
     collections(first: ${first}) {
+      pageInfo {
+        hasNextPage
+      }
       edges {
+        cursor
         node {
+          title
+          description
+          descriptionHtml
+          image {
+            altText
+            height
+            width
+            url
+            id
+          }
+          handle
           id
         }
       }

@@ -1,3 +1,3 @@
 export interface Collections {
-  getAll?: (first?: number) => string
+  getCollections?: (first?: number) => string
 }
