@@ -1,4 +1,4 @@
-import { Controller, Get, Headers, Param, Query } from '@nestjs/common';
+import { Controller, Get, Headers, Param, Query, ParseIntPipe } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { CollectionsService } from '../services/collections.service';
@@ -10,11 +10,11 @@ export class CollectionsController {
 
   @Get()
   getCollections(
-    @Query('first') first = 10,
-    @Query('query') query: string,
-    @Query('cursor') cursor: string,
+    @Query('first', ParseIntPipe) first: number = 10,
+    @Query('query') query: string = null,
+    @Query('cursor') cursor: string = null,
     @Headers('accept-language') acceptLanguage = 'en',
   ) {
-    return this.collectionService.getCollections(first, acceptLanguage);
+    return this.collectionService.getCollections(first, acceptLanguage, query, cursor);
   }
 }

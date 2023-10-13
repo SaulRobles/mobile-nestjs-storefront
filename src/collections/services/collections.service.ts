@@ -11,7 +11,7 @@ export class CollectionsService {
   ) {}
 
   async getCollections(first: number, acceptLanguage: string, query?: string, cursor?: string) {
-    const graphqlQuery = collectionsQueries.getCollections(first)
+    const graphqlQuery = collectionsQueries.getCollections(first, cursor)
     
     const shopifyResponse: shopifyCollections = await this.mercuryStore.graphql(graphqlQuery)
 

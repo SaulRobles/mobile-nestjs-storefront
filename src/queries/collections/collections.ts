@@ -2,9 +2,9 @@ import { Collections } from './interfaces';
 
 const collections: Collections = {};
 
-collections.getCollections = (first = 10) => {
+collections.getCollections = (first = 10, cursor = null) => {
   const query = `{
-    collections(first: ${first}) {
+    collections(first: ${first} ${cursor && cursor !== '""' ? `after: "${cursor}"` : '' }) {
       pageInfo {
         hasNextPage
       }

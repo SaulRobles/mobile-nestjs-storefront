@@ -1,3 +1,3 @@
 export interface Collections {
-  getCollections?: (first?: number) => string
+  getCollections?: (first?: number, cursor?: string) => string
 }
