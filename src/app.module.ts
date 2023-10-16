@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConnectionModule } from './connection/connection.module';
+import { ConnectionsModule } from './connections/connections.module';
 import { CollectionsModule } from './collections/collections.module';
 
 import { environments } from './enviroments';
@@ -15,7 +15,7 @@ import config from './config';
       load: [config],
       isGlobal: true,
     }),
-    ConnectionModule, 
+    ConnectionsModule, 
     CollectionsModule
   ],
   controllers: [AppController],

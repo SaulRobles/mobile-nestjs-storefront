@@ -21,4 +21,27 @@ export class CollectionsController {
   ) {
     return this.collectionService.getCollections(first, acceptLanguage, query, cursor);
   }
+
+  @Get(':collection_id')
+  @ApiOperation({ summary: 'Shopify collection' })
+  getCollection(
+    @Param('collection_id', ParseIntPipe) collectionId: number,
+    @Headers('accept-language') acceptLanguage = 'en',
+  ) {
+    return this.collectionService.getCollectionById(collectionId);
+  }
+
+  @Get(':collection_id/products')
+  @ApiOperation({ summary: 'Products in a collection by id' })
+  getCollectionProducts(
+    @Param('collection_id', ParseIntPipe) collectionId: number,
+    @Headers('accept-language') acceptLanguage = 'en',
+    @Query('first', ParseIntPipe) first: number,
+    @Query('cursor') cursor: string,
+    @Query('page', ParseIntPipe) page: number,
+    @Query('offset', ParseIntPipe) offset: number,
+    @Query('limit', ParseIntPipe) limit: number
+  ) {
+    return this.collectionService.getCollectionProducts(collectionId, page, limit, first, cursor);
+  }
 }

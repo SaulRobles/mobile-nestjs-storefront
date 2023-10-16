@@ -1,3 +1,5 @@
 export interface Collections {
-  getCollections?: (first?: number, cursor?: string) => string
+  getList?: (first?: number, cursor?: string) => string
+  getById?: (collectionId: number) => string
+  getProducts?: (collectionId: number) => string
 }
