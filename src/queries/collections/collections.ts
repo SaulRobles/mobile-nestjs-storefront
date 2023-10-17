@@ -53,11 +53,11 @@ collections.getById = (collectionId: number) => {
   return query;
 }
 
-collections.getProducts = (collectionId: number) => {
+collections.getProducts = (collectionId: number, first = 5, cursor = null) => {
   const query = `{
     collection(id: "gid://shopify/Collection/${collectionId}") {
       productsCount
-      products(first: 2) {
+      products(first: ${first}, ${cursor && cursor !== '""' ? `after: "${cursor}"` : '' }) {
         edges {
           cursor
           node {
@@ -102,7 +102,7 @@ collections.getProducts = (collectionId: number) => {
               }
             }
             onlineStoreUrl
-            collections(first: 1) {
+            collections(first: 3) {
               edges {
                 node {
                   title
@@ -121,7 +121,7 @@ collections.getProducts = (collectionId: number) => {
               }
             }
             publishedAt
-            images(first: 50) {
+            images(first: 10) {
               edges {
                 cursor
                 node {

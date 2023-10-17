@@ -39,9 +39,7 @@ export class CollectionsController {
     @Query('first', ParseIntPipe) first: number,
     @Query('cursor') cursor: string,
     @Query('page', ParseIntPipe) page: number,
-    @Query('offset', ParseIntPipe) offset: number,
-    @Query('limit', ParseIntPipe) limit: number
   ) {
-    return this.collectionService.getCollectionProducts(collectionId, page, limit, first, cursor);
+    return this.collectionService.getCollectionProducts(collectionId, page, first, cursor);
   }
 }

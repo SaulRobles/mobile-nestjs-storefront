@@ -77,24 +77,39 @@ export class CollectionsService {
   async getCollectionProducts(
     collectionId: number,
     page: number = 1,
-    limit: number,
     first: number,
     cursor?: string,
   ) {
     const graphqlQuery = collectionsQueries.getProducts(collectionId);
 
-    const shopifyResponse: shopifyCollectionProducts =
-      await this.mercuryStore.graphql(graphqlQuery);
+    const shopifyResponse: shopifyCollectionProducts = await this.mercuryStore.graphql(graphqlQuery);
+
+    //this.runProducts(collectionId, first, page);
 
     const resp: any = GlobalService.cleanShopifyResponse(shopifyResponse, 'products');
 
     const pagination = {
       page,
       offset: first,
-      pages: Math.ceil(resp.productsCount / limit),
+      pages: Math.ceil(resp.productsCount / first),
       total: resp.productsCount
     }
 
     return {pagination, ...resp};
   }
+
+
+
+  async runProducts(id: number, first: number, page: number) {
+    let aux: any;
+    for (let i = 0; i < page; i++) {
+      if(i === 0) {
+        const graphqlQuery = collectionsQueries.getProducts(id, first);
+        aux = await this.mercuryStore.graphql(graphqlQuery);
+        console.log(aux, 'aux')
+      }
+    }
+  }
+
+
 }
