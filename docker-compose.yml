@@ -1,0 +1,9 @@
+version: '1'
+
+services:
+  node_redis:
+    container_name: redis_mobile_backend
+    image: "redis/redis-stack-server:latest"
+    ports:
+      - "6379:6379"
+    
