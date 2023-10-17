@@ -15,7 +15,7 @@ import config from '../config';
           shopName: name,
           apiKey,
           password,
-          apiVersion: '2023-04'
+          apiVersion: '2023-07'
         });
         
         return shop;
@@ -25,4 +25,4 @@ import config from '../config';
   ],
   exports: ['SBC']
 })
-export class ConnectionModule {}
+export class ConnectionsModule {}
